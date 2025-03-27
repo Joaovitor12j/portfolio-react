@@ -57,7 +57,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center py-20 px-4 md:px-8"
+      className="relative min-h-[80vh] flex items-start pt-24 pb-20 px-4 md:px-8"
     >
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-indigo-950 opacity-50"></div>
