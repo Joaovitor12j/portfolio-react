@@ -1,7 +1,7 @@
-
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import {useState, useEffect} from 'react';
+import {Menu, X} from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import LanguageDropdown from './LanguageDropdown';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +24,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       const sections = ['hero', 'about', 'projects', 'resume', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
@@ -34,7 +34,7 @@ const Navbar = () => {
         }
         return false;
       });
-      
+
       if (currentSection) {
         setActiveSection(currentSection);
       }
@@ -45,7 +45,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
       }`}
@@ -57,8 +57,8 @@ const Navbar = () => {
           </a>
 
           <nav className="hidden md:flex items-center space-x-1">
-            <a 
-              href="#hero" 
+            <a
+              href="#hero"
               className={`nav-link ${activeSection === 'hero' ? 'active' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -67,8 +67,8 @@ const Navbar = () => {
             >
               Home
             </a>
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -77,8 +77,8 @@ const Navbar = () => {
             >
               Sobre
             </a>
-            <a 
-              href="#projects" 
+            <a
+              href="#projects"
               className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -87,8 +87,8 @@ const Navbar = () => {
             >
               Projetos
             </a>
-            <a 
-              href="#resume" 
+            <a
+              href="#resume"
               className={`nav-link ${activeSection === 'resume' ? 'active' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -97,8 +97,8 @@ const Navbar = () => {
             >
               Currículo
             </a>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
@@ -109,45 +109,49 @@ const Navbar = () => {
             </a>
             <a
               href="https://code-coffee-blog.vercel.app/"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary ml-4"
             >
               Blog
             </a>
-            <ThemeToggle />
+            <div className="flex items-center ml-4 pl-2 space-x-3">
+              <LanguageDropdown/>
+              <ThemeToggle/>
+            </div>
           </nav>
 
           <div className="md:hidden flex items-center space-x-4">
-            <ThemeToggle />
-            <button 
+            <LanguageDropdown/>
+            <ThemeToggle/>
+            <button
               className="flex items-center"
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24}/> : <Menu size={24}/>}
             </button>
           </div>
         </div>
       </div>
 
-      <div 
+      <div
         className={`md:hidden fixed inset-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full p-6">
           <div className="flex justify-end mb-8">
-            <button 
+            <button
               onClick={toggleMenu}
               aria-label="Close menu"
             >
-              <X size={24} />
+              <X size={24}/>
             </button>
           </div>
           <nav className="flex flex-col items-center justify-center flex-1 space-y-6 text-xl">
-            <a 
-              href="#hero" 
+            <a
+              href="#hero"
               className="nav-link"
               onClick={(e) => {
                 e.preventDefault();
@@ -156,8 +160,8 @@ const Navbar = () => {
             >
               Home
             </a>
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="nav-link"
               onClick={(e) => {
                 e.preventDefault();
@@ -166,8 +170,8 @@ const Navbar = () => {
             >
               Sobre
             </a>
-            <a 
-              href="#projects" 
+            <a
+              href="#projects"
               className="nav-link"
               onClick={(e) => {
                 e.preventDefault();
@@ -176,8 +180,8 @@ const Navbar = () => {
             >
               Projetos
             </a>
-            <a 
-              href="#resume" 
+            <a
+              href="#resume"
               className="nav-link"
               onClick={(e) => {
                 e.preventDefault();
@@ -186,8 +190,8 @@ const Navbar = () => {
             >
               Currículo
             </a>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="nav-link"
               onClick={(e) => {
                 e.preventDefault();
@@ -196,9 +200,9 @@ const Navbar = () => {
             >
               Contato
             </a>
-            <a 
+            <a
               href="https://code-coffee-blog.vercel.app/"
-              target="_blank" 
+              target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary mt-4"
             >
