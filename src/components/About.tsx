@@ -76,17 +76,25 @@ const About = () => {
           <div ref={(el) => addToRefs(el, 0)} className="animate-on-scroll">
             <h3 className="text-2xl font-bold mb-6">Minha Jornada</h3>
             <p className="mb-4">
-              Desenvolvedor FullStack com mais de 4 anos de experiência em PHP/Laravel
-              e React. Especializado em criar aplicações web robustas e escaláveis, com
-              foco em código limpo e boas práticas de desenvolvimento.
+              Sou um Desenvolvedor PHP Full Stack com sólida experiência no desenvolvimento de sistemas complexos e integrações críticas,
+              especialmente no setor fiscal e contábil. Ao longo da minha carreira, tenho atuado na criação e otimização de soluções escaláveis,
+              utilizando frameworks robustos como Laravel e Symfony, e tecnologias modernas de front-end como React e Vue.
             </p>
             <p className="mb-4">
-              Apaixonado por resolver problemas complexos com soluções tecnológicas
-              simples e eficientes. Experiência em trabalhar com equipes de desenvolvimento.
+              Atualmente, na IXC Soft, sou responsável por implementar sistemas que automatizam processos fiscais, como o cálculo de tributos e a
+              emissão de notas fiscais eletrônicas, sempre buscando aumentar a eficiência e a segurança das aplicações. Minha atuação inclui a
+              integração com APIs governamentais e privadas, garantindo a conformidade e a agilidade na troca de informações fiscais em tempo real.
             </p>
             <p>
-              Sempre em busca de novos desafios e aprendizados no mundo da programação.
-              Atualmente focado em design system e desenvolvimento orientado a testes.
+              Além disso, possuo experiência com processamento assíncrono e gerenciamento de filas (utilizando RabbitMQ, Redis e SQS), o que me
+              permite desenvolver soluções capazes de manipular grandes volumes de dados sem comprometer a performance do sistema. Essa expertise é
+              reforçada por minha formação em Análise de Sistemas e pela prática contínua de metodologias ágeis, que asseguram a entrega de valor em
+              ciclos curtos e eficientes.
+            </p>
+            <p>
+              Sou apaixonado por inovação e melhoria contínua, sempre em busca de desafios que me permitam transformar processos e agregar valor tanto
+              para a equipe quanto para os clientes. Com um perfil que une profundidade técnica e visão estratégica, estou comprometido em desenvolver
+              soluções que não apenas atendam, mas superem as expectativas do mercado.
             </p>
           </div>
 
