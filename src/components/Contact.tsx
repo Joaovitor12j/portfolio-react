@@ -4,6 +4,7 @@ import { Github, Linkedin, Mail, Send } from 'lucide-react';
 import {AiFillGithub} from "react-icons/ai";
 import {SiGithub} from "react-icons/si";
 import {FaLinkedin} from "react-icons/fa";
+import {useLanguage} from "@/contexts/LanguageContext.tsx";
 
 type FormState = {
   name: string;
@@ -18,44 +19,45 @@ type FormErrors = {
 };
 
 const Contact = () => {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState<FormState>({
     name: '',
     email: '',
     message: ''
   });
-  
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Nome é obrigatório';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email é obrigatório';
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = 'Email inválido';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Mensagem é obrigatória';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     if (!validate()) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -66,7 +68,7 @@ const Contact = () => {
         },
         body: JSON.stringify(formData)
       });
-      
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
@@ -90,27 +92,32 @@ const Contact = () => {
     }
   };
 
+  const title1 = language === 'pt-BR' ? 'Entre em contato' : 'Contact me';
+  const title2 = language === 'pt-BR' ? 'Informações de Contato' : 'Contact Information';
+  const text1 = language === 'pt-BR' ?
+    'Estou disponível para trabalhos freelance, oportunidades de emprego\n' +
+    ' ou apenas para trocar ideias sobre tecnologia e desenvolvimento.' :
+    'I\'m available for freelance work, job opportunities\n' +
+    ' or just to exchange ideas about technology and development.';
+
   return (
     <section id="contact" className="py-24 bg-gradient-to-b from-blue-50/30 to-background">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold">Entre em Contato</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">{title1}</h2>
           <div className="section-divider mx-auto"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="glass-card p-8">
-            <h3 className="text-2xl font-bold mb-6">Informações de Contato</h3>
-            
+            <h3 className="text-2xl font-bold mb-6">{title2}</h3>
+
             <div className="space-y-6">
-              <p className="text-gray-600">
-                Estou disponível para trabalhos freelance, oportunidades de emprego 
-                ou apenas para trocar ideias sobre tecnologia e desenvolvimento.
-              </p>
-              
+              <p className="text-gray-600">{text1}</p>
+
               <div>
                 <p className="font-medium mb-2">Email:</p>
-                <a 
+                <a
                   href="mailto:joaovitor12j@gmail.com"
                   target="_blank"
                   className="text-primary hover:underline inline-flex items-center gap-2"
@@ -119,22 +126,22 @@ const Contact = () => {
                   <span>joaovitor12j@gmail.com</span>
                 </a>
               </div>
-              
+
               <div>
-                <p className="font-medium mb-4">Redes Sociais:</p>
+                <p className="font-medium mb-4">{language === 'pt-BR' ? 'Redes Sociais: ' : 'Social Media: '}</p>
                 <div className="flex gap-4">
-                  <a 
+                  <a
                     href="https://github.com/Joaovitor12j"
-                    target="_blank" 
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-secondary inline-flex items-center gap-2"
                   >
                     <SiGithub size={18} />
                     <span>GitHub</span>
                   </a>
-                  <a 
+                  <a
                     href="https://www.linkedin.com/in/joao-vitorss/"
-                    target="_blank" 
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-secondary inline-flex items-center gap-2"
                   >
@@ -148,7 +155,7 @@ const Contact = () => {
 
           <div className="glass-card p-8">
             <h3 className="text-2xl font-bold mb-6">Envie uma Mensagem</h3>
-            
+
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -164,7 +171,7 @@ const Contact = () => {
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
                   Email
@@ -179,7 +186,7 @@ const Contact = () => {
                 />
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
                   Mensagem
@@ -193,7 +200,7 @@ const Contact = () => {
                 ></textarea>
                 {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
               </div>
-              
+
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -204,13 +211,13 @@ const Contact = () => {
                 <Send size={16} />
                 <span>{isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}</span>
               </button>
-              
+
               {submitStatus === 'success' && (
                 <div className="mt-4 p-3 bg-green-50 text-green-700 rounded-md">
                   Mensagem enviada com sucesso! Obrigado pelo contato.
                 </div>
               )}
-              
+
               {submitStatus === 'error' && (
                 <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-md">
                   Ocorreu um erro ao enviar a mensagem. Tente novamente.
